@@ -20,7 +20,7 @@ export default function handler(req, res) {
     if(userScore) {
       userScore.score = score;
     } else {
-      highscores.push({ name, score, date: new Date().toDateString() });
+      highscores.push({ name:name, score:score, date: new Date().toDateString() });
     }
 
 

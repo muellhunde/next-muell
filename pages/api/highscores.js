@@ -12,15 +12,17 @@ export default function handler(req, res) {
 
     const name = req.body.name;
     const score = req.body.score;
-
-    let userScore = highscores.filter(sc => {
-      return sc.name == name;
-    })
+    let userScore = null;
+    if(highscores.length>0) {
+      userScore = highscores.filter(sc => {
+        return sc.name == name;
+      });
+    }
 
     if(userScore) {
       userScore.score = score;
     } else {
-      highscores.push({ name:name, score:score, date: new Date().toDateString() });
+      highscores.push({ name: name, score: score });
     }
 
 

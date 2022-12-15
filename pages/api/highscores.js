@@ -12,20 +12,19 @@ export default function handler(req, res) {
 
     const name = req.body.name;
     const score = req.body.score;
-    let userScore = null;
+    
+    let userIdx = -1;
     if(highscores.length>0) {
-      userScore = highscores.filter(sc => {
+      userIdx = highscores.findIndex(sc => {
         return sc.name == name;
-      });
+      });      
     }
 
-    if(userScore) {
-      userScore.score = score;
+    if(userIdx > 0) {
+      highscores[userIdx].score = score;
     } else {
       highscores.push({ name: name, score: score });
     }
-
-
 
     
     res.setHeader('Access-Control-Allow-Credentials', true)
